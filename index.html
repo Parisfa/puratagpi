@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kira Purata Markah Subjek</title>
+    <meta name="theme-color" content="#4CAF50">
+    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS2lyYSBQdXJhdGEgTWFya2FoIFN1YmplayIsInNob3J0X25hbWUiOiJQdXJhdGEgTWFya2FoIiwic3RhcnRfdXJsIjoiL2luZGV4Lmh0bWwiLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjlmOWY5IiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiR1Z1ZEdsbWFXeGxQU0pvZEhSd2N6b3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWxqYUdWcFoyaDBNVFp5Um1GMFpXUjFjeTUzYzJsMFpYTXZiR2xqWVhScGIyNXVaWFJsY3kxdmNtOW1hV3hsSUc5bUlHRnlaR1ZqZEVOMGIzSmxZWFJsWkY5elpXTnlaWFF1ZG1WeWMybHZiajBpYUhSMGNITTZMeTkzZDNjdWR6TXVZMjl0YldWdWRITnNhV05sTFhSdmEyVnVDZz09Iiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
+        h1 { color: #333; text-align: center; }
+        form { margin-bottom: 20px; max-width: 400px; margin: 0 auto; }
+        label { display: block; margin: 10px 0 5px; font-weight: bold; }
+        input { padding: 8px; width: 100%; max-width: 200px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; width: 100%; max-width: 200px; }
+        button:hover { background-color: #45a049; }
+        #hasil { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #fff; border-radius: 4px; max-width: 400px; margin: 0 auto; }
+        @media (max-width: 600px) {
+            body { margin: 10px; }
+            form { max-width: 100%; }
+            input, button { max-width: 100%; }
+            #hasil { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kira Purata Nilai Berdasarkan Markah Subjek</h1>
+    <p>Sila masukkan markah (dalam peratus, 0-100) untuk setiap subjek:</p>
+    
+    <form id="markahForm">
+        <label for="bahasa_melayu">Bahasa Melayu (%):</label>
+        <input type="number" id="bahasa_melayu" min="0" max="100" required>
+        
+        <label for="bahasa_english">Bahasa English (%):</label>
+        <input type="number" id="bahasa_english" min="0" max="100" required>
+        
+        <label for="matematik">Matematik (%):</label>
+        <input type="number" id="matematik" min="0" max="100" required>
+        
+        <label for="sains">Sains (%):</label>
+        <input type="number" id="sains" min="0" max="100" required>
+        
+        <label for="sejarah">Sejarah (%):</label>
+        <input type="number" id="sejarah" min="0" max="100" required>
+        
+        <label for="geografi">Geografi (%):</label>
+        <input type="number" id="geografi" min="0" max="100" required>
+        
+        <label for="reka_bentuk">Reka Bentuk dan Teknologi (%):</label>
+        <input type="number" id="reka_bentuk" min="0" max="100" required>
+        
+        <label for="pendidikan_islam">Pendidikan Islam (%):</label>
+        <input type="number" id="pendidikan_islam" min="0" max="100" required>
+        
+        <button type="button" onclick="kiraPurata()">Kira Purata</button>
+    </form>
+    
+    <div id="hasil"></div>
+    
+    <script>
+        function hitungNilaiNumerik(markah) {
+            if (markah >= 82 && markah <= 100) return 1; // Gred A
+            if (markah >= 66 && markah <= 81) return 2; // Gred B
+            if (markah >= 50 && markah <= 65) return 3; // Gred C
+            if (markah >= 35 && markah <= 49) return 4; // Gred D
+            if (markah >= 20 && markah <= 34) return 5; // Gred E
+            if (markah >= 0 && markah <= 19) return 6; // Gred F
+            return null; // Tidak valid
+        }
+        
+        function kiraPurata() {
+            const subjek = [
+                { nama: "Bahasa Melayu", id: "bahasa_melayu" },
+                { nama: "Bahasa English", id: "bahasa_english" },
+                { nama: "Matematik", id: "matematik" },
+                { nama: "Sains", id: "sains" },
+                { nama: "Sejarah", id: "sejarah" },
+                { nama: "Geografi", id: "geografi" },
+                { nama: "Reka Bentuk dan Teknologi", id: "reka_bentuk" },
+                { nama: "Pendidikan Islam", id: "pendidikan_islam" }
+            ];
+            
+            let totalNilaiNumerik = 0;
+            let ringkasan = "<h2>✅ Ringkasan Keputusan Anda:</h2><ul>";
+            let semuaValid = true;
+            
+            subjek.forEach(sub => {
+                const markah = parseFloat(document.getElementById(sub.id).value);
+                if (isNaN(markah) || markah < 0 || markah > 100) {
+                    alert(`Markah untuk ${sub.nama} mestilah antara 0 dan 100.`);
+                    semuaValid = false;
+                    return;
+                }
+                const nilaiNumerik = hitungNilaiNumerik(markah);
+                if (nilaiNumerik === null) {
+                    alert(`Markah untuk ${sub.nama} tidak valid.`);
+                    semuaValid = false;
+                    return;
+                }
+                totalNilaiNumerik += nilaiNumerik;
+                ringkasan += `<li>${sub.nama}: Markah ${markah.toFixed(2)}% (Nilai Numerik: ${nilaiNumerik})</li>`;
+            });
+            
+            if (!semuaValid) return;
+            
+            ringkasan += "</ul>";
+            const purata = totalNilaiNumerik / 8;
+            ringkasan += `<p><strong>🔢 Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
+            ringkasan += `<p><strong>➗ Purata Nilai Numerik (Total / 8):</strong> ${purata.toFixed(2)}</p>`;
+            ringkasan += "<p>semoga berjaya dihadapan✨</p>";
+            
+            document.getElementById("hasil").innerHTML = ringkasan;
+        }
+
+        // Tambah fungsi untuk navigasi dengan Enter
+        const inputIds = [
+            "bahasa_melayu",
+            "bahasa_english",
+            "matematik",
+            "sains",
+            "sejarah",
+            "geografi",
+            "reka_bentuk",
+            "pendidikan_islam"
+        ];
+
+        inputIds.forEach((id, index) => {
+            const input = document.getElementById(id);
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault(); // Halang submit form jika ada
+                    const nextIndex = index + 1;
+                    if (nextIndex < inputIds.length) {
+                        document.getElementById(inputIds[nextIndex]).focus();
+                    } else {
+                        // Jika sudah di input terakhir, fokus ke button
+                        document.querySelector('button').focus();
+                    }
+                }
+            });
+        });
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(`
+                    self.addEventListener('install', function(e) {
+                        console.log('Service Worker installing.');
+                    });
+                    self.addEventListener('activate', function(e) {
+                        console.log('Service Worker activating.');
+                    });
+                    self.addEventListener('fetch', function(e) {
+                        // Basic caching for offline use
+                        e.respondWith(
+                            caches.match(e.request).then(function(response) {
+                                return response || fetch(e.request);
+                            })
+                        );
+                    });
+                `)).then(function(registration) {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('Service Worker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
