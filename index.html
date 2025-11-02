@@ -81,7 +81,7 @@
             ];
             
             let totalNilaiNumerik = 0;
-            let ringkasan = "<h2>✅ Ringkasan Keputusan Anda:</h2><ul>";
+            let ringkasan = "<h2>✅ keputusan:</h2><ul>";
             let semuaValid = true;
             
             subjek.forEach(sub => {
@@ -105,8 +105,8 @@
             
             ringkasan += "</ul>";
             const purata = totalNilaiNumerik / 8;
-            ringkasan += `<p><strong>🔢 Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
-            ringkasan += `<p><strong>➗ Purata Nilai Numerik (Total / 8):</strong> ${purata.toFixed(2)}</p>`;
+            ringkasan += `<p><strong> Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
+            ringkasan += `<p><strong> purata GPI: ${purata.toFixed(2)}</p>`;
             ringkasan += "<p>semoga berjaya dihadapan✨</p>";
             
             document.getElementById("hasil").innerHTML = ringkasan;
