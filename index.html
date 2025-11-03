@@ -3,23 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kira Purata Markah Subjek</title>
-    <meta name="theme-color" content="#4CAF50">
-    <link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoiS2lyYSBQdXJhdGEgTWFya2FoIFN1YmplayIsInNob3J0X25hbWUiOiJQdXJhdGEgTWFya2FoIiwic3RhcnRfdXJsIjoiL2luZGV4Lmh0bWwiLCJkaXNwbGF5Ijoic3RhbmRhbG9uZSIsImJhY2tncm91bmRfY29sb3IiOiIjZjlmOWY5IiwiaWNvbnMiOlt7InNyYyI6ImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiR1Z1ZEdsbWFXeGxQU0pvZEhSd2N6b3ZMM2QzZHk1M015NXZjbWN2TWpBd01DOXpkbWxqYUdWcFoyaDBNVFp5Um1GMFpXUjFjeTUzYzJsMFpYTXZiR2xqWVhScGIyNXVaWFJsY3kxdmNtOW1hV3hsSUc5bUlHRnlaR1ZqZEVOMGIzSmxZWFJsWkY5elpXTnlaWFF1ZG1WeWMybHZiajBpYUhSMGNITTZMeTkzZDNjdWR6TXVZMjl0YldWdWRITnNhV05sTFhSdmEyVnVDZz09Iiwic2l6ZXMiOiIxOTJ4MTkyIiwidHlwZSI6ImltYWdlL3N2Zyt4bWwifV19">
+    <title>Kira Purata GPI Markah Subjek</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f9f9f9; }
-        h1 { color: #333; text-align: center; }
-        form { margin-bottom: 20px; max-width: 400px; margin: 0 auto; }
-        label { display: block; margin: 10px 0 5px; font-weight: bold; }
-        input { padding: 8px; width: 100%; max-width: 200px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; width: 100%; max-width: 200px; }
-        button:hover { background-color: #45a049; }
-        #hasil { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #fff; border-radius: 4px; max-width: 400px; margin: 0 auto; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 50%, #80cbc4 100%); 
+            background-attachment: fixed; 
+            color: #333; 
+            min-height: 100vh; 
+            position: relative; 
+            font-size: 16px; /* Saiz fon asas untuk mudah dibaca pada mudah alih */
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1 { 
+            color: #00695c; 
+            text-align: center; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+            font-size: 1.5em; /* Lebih besar untuk mudah alih */
+        }
+        form { 
+            margin-bottom: 20px; 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: 0 auto 20px; 
+            width: 100%; /* Pastikan penuh lebar pada mudah alih */
+            box-sizing: border-box;
+        }
+        label { 
+            display: block; 
+            margin: 15px 0 5px; /* Lebih banyak margin untuk ruang sentuhan */
+            font-weight: bold; 
+            font-size: 1em;
+        }
+        input { 
+            padding: 12px; /* Lebih banyak padding untuk sentuhan mudah */
+            width: 100%; 
+            max-width: 100%; /* Penuh lebar pada mudah alih */
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box; 
+            font-size: 16px; /* Mencegah zoom pada iOS/Android */
+        }
+        button { 
+            padding: 15px 25px; /* Lebih besar untuk sentuhan */
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-size: 18px; /* Lebih besar */
+            transition: background-color 0.3s; 
+            width: 100%; /* Penuh lebar pada mudah alih */
+            margin-top: 10px;
+        }
+        button:hover { 
+            background-color: #45a049; 
+            transform: translateY(-2px); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+        }
+        #hasil { 
+            margin-top: 20px; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: 20px auto; 
+            width: 100%; /* Penuh lebar pada mudah alih */
+            box-sizing: border-box;
+        }
+        p { 
+            text-align: center; 
+            font-size: 1em;
+        }
+        /* Media query untuk skrin kecil */
         @media (max-width: 600px) {
             body { margin: 10px; }
-            form { max-width: 100%; }
-            input, button { max-width: 100%; }
-            #hasil { max-width: 100%; }
+            h1 { font-size: 1.3em; }
+            form { padding: 15px; }
+            label { margin: 12px 0 5px; }
+            input { padding: 10px; }
+            button { padding: 12px 20px; font-size: 16px; }
+            #hasil { padding: 15px; }
         }
     </style>
 </head>
@@ -81,7 +161,6 @@
             ];
             
             let totalNilaiNumerik = 0;
-            let ringkasan = "<h2>✅ keputusan:</h2><ul>";
             let semuaValid = true;
             
             subjek.forEach(sub => {
@@ -98,74 +177,34 @@
                     return;
                 }
                 totalNilaiNumerik += nilaiNumerik;
-                ringkasan += `<li>${sub.nama}: Markah ${markah.toFixed(2)}% (Nilai Numerik: ${nilaiNumerik})</li>`;
             });
             
             if (!semuaValid) return;
             
-            ringkasan += "</ul>";
             const purata = totalNilaiNumerik / 8;
-            ringkasan += `<p><strong> Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
-            ringkasan += `<p><strong> purata GPI: ${purata.toFixed(2)}</p>`;
+            // Hanya tunjukkan GPI dan pesan, tanpa ringkasan keputusan
+            let ringkasan = `<p><strong>➗ Purata GPI:</strong> ${purata.toFixed(2)}</p>`;
             ringkasan += "<p>semoga berjaya dihadapan✨</p>";
             
             document.getElementById("hasil").innerHTML = ringkasan;
         }
 
-        // Tambah fungsi untuk navigasi dengan Enter
-        const inputIds = [
-            "bahasa_melayu",
-            "bahasa_english",
-            "matematik",
-            "sains",
-            "sejarah",
-            "geografi",
-            "reka_bentuk",
-            "pendidikan_islam"
-        ];
-
+        // Tambah event listener untuk Enter pada setiap input
+        const inputIds = ["bahasa_melayu", "bahasa_english", "matematik", "sains", "sejarah", "geografi", "reka_bentuk", "pendidikan_islam"];
         inputIds.forEach((id, index) => {
-            const input = document.getElementById(id);
-            input.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    e.preventDefault(); // Halang submit form jika ada
+            document.getElementById(id).addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Mencegah submit form
                     const nextIndex = index + 1;
                     if (nextIndex < inputIds.length) {
                         document.getElementById(inputIds[nextIndex]).focus();
                     } else {
-                        // Jika sudah di input terakhir, fokus ke button
+                        // Jika input terakhir, fokus ke butang atau panggil kiraPurata
                         document.querySelector('button').focus();
                     }
                 }
             });
         });
-
-        // Register Service Worker for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('data:text/javascript;base64,' + btoa(`
-                    self.addEventListener('install', function(e) {
-                        console.log('Service Worker installing.');
-                    });
-                    self.addEventListener('activate', function(e) {
-                        console.log('Service Worker activating.');
-                    });
-                    self.addEventListener('fetch', function(e) {
-                        // Basic caching for offline use
-                        e.respondWith(
-                            caches.match(e.request).then(function(response) {
-                                return response || fetch(e.request);
-                            })
-                        );
-                    });
-                `)).then(function(registration) {
-                    console.log('Service Worker registered with scope: ', registration.scope);
-                }, function(err) {
-                    console.log('Service Worker registration failed: ', err);
-                });
-            });
-        }
     </script>
 </body>
-
 </html>
