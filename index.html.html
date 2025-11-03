@@ -3,16 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kira Purata Markah Subjek</title>
+    <title>Kira Purata GPI Markah Subjek</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        h1 { color: #333; }
-        form { margin-bottom: 20px; }
-        label { display: block; margin: 10px 0 5px; }
-        input { padding: 5px; width: 100%; max-width: 200px; }
-        button { padding: 10px 20px; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #45a049; }
-        #hasil { margin-top: 20px; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9; }
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 50%, #80cbc4 100%); 
+            background-attachment: fixed; 
+            color: #333; 
+            min-height: 100vh; 
+            position: relative; 
+            font-size: 16px; /* Saiz fon asas untuk mudah dibaca pada mudah alih */
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23ffffff" opacity="0.1"/><circle cx="20" cy="20" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="80" cy="80" r="1" fill="%23ffffff" opacity="0.1"/></svg>') repeat;
+            pointer-events: none;
+            z-index: -1;
+        }
+        h1 { 
+            color: #00695c; 
+            text-align: center; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+            font-size: 1.5em; /* Lebih besar untuk mudah alih */
+        }
+        form { 
+            margin-bottom: 20px; 
+            background: rgba(255, 255, 255, 0.9); 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: 0 auto 20px; 
+            width: 100%; /* Pastikan penuh lebar pada mudah alih */
+            box-sizing: border-box;
+        }
+        label { 
+            display: block; 
+            margin: 15px 0 5px; /* Lebih banyak margin untuk ruang sentuhan */
+            font-weight: bold; 
+            font-size: 1em;
+        }
+        input { 
+            padding: 12px; /* Lebih banyak padding untuk sentuhan mudah */
+            width: 100%; 
+            max-width: 100%; /* Penuh lebar pada mudah alih */
+            border: 1px solid #ccc; 
+            border-radius: 5px; 
+            box-sizing: border-box; 
+            font-size: 16px; /* Mencegah zoom pada iOS/Android */
+        }
+        button { 
+            padding: 15px 25px; /* Lebih besar untuk sentuhan */
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 5px; 
+            font-size: 18px; /* Lebih besar */
+            transition: background-color 0.3s; 
+            width: 100%; /* Penuh lebar pada mudah alih */
+            margin-top: 10px;
+        }
+        button:hover { 
+            background-color: #45a049; 
+            transform: translateY(-2px); 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+        }
+        #hasil { 
+            margin-top: 20px; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            background-color: rgba(255, 255, 255, 0.9); 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+            max-width: 600px; 
+            margin: 20px auto; 
+            width: 100%; /* Penuh lebar pada mudah alih */
+            box-sizing: border-box;
+        }
+        p { 
+            text-align: center; 
+            font-size: 1em;
+        }
+        /* Media query untuk skrin kecil */
+        @media (max-width: 600px) {
+            body { margin: 10px; }
+            h1 { font-size: 1.3em; }
+            form { padding: 15px; }
+            label { margin: 12px 0 5px; }
+            input { padding: 10px; }
+            button { padding: 12px 20px; font-size: 16px; }
+            #hasil { padding: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -41,7 +129,7 @@
         <label for="reka_bentuk">Reka Bentuk dan Teknologi (%):</label>
         <input type="number" id="reka_bentuk" min="0" max="100" required>
         
-        <label for="pendidikan_islam">Pendidikan Islam/Bahasa Cina (%):</label>
+        <label for="pendidikan_islam">Pendidikan Islam/bahasa cina (%):</label>
         <input type="number" id="pendidikan_islam" min="0" max="100" required>
         
         <button type="button" onclick="kiraPurata()">Kira Purata</button>
@@ -60,7 +148,7 @@
             return null; // Tidak valid
         }
         
-        function kira GPI() {
+        function kiraPurata() {
             const subjek = [
                 { nama: "Bahasa Melayu", id: "bahasa_melayu" },
                 { nama: "Bahasa English", id: "bahasa_english" },
@@ -73,7 +161,6 @@
             ];
             
             let totalNilaiNumerik = 0;
-            let ringkasan = "<h2>✅ Ringkasan Keputusan Anda:</h2><ul>";
             let semuaValid = true;
             
             subjek.forEach(sub => {
@@ -90,22 +177,34 @@
                     return;
                 }
                 totalNilaiNumerik += nilaiNumerik;
-                ringkasan += `<li>${sub.nama}: Markah ${markah.toFixed(2)}% (Nilai Numerik: ${nilaiNumerik})</li>`;
             });
             
             if (!semuaValid) return;
             
-            ringkasan += "</ul>";
             const purata = totalNilaiNumerik / 8;
-            ringkasan += `<p><strong>🔢 Jumlah Keseluruhan Nilai Numerik (Total):</strong> ${totalNilaiNumerik}</p>`;
-            ringkasan += `<p><strong>➗purata GPI:</strong> ${purata.toFixed(2)}</p>`;
+            // Hanya tunjukkan GPI dan pesan, tanpa ringkasan keputusan
+            let ringkasan = `<p><strong>➗ Purata GPI:</strong> ${purata.toFixed(2)}</p>`;
             ringkasan += "<p>semoga berjaya dihadapan✨</p>";
             
             document.getElementById("hasil").innerHTML = ringkasan;
         }
+
+        // Tambah event listener untuk Enter pada setiap input
+        const inputIds = ["bahasa_melayu", "bahasa_english", "matematik", "sains", "sejarah", "geografi", "reka_bentuk", "pendidikan_islam"];
+        inputIds.forEach((id, index) => {
+            document.getElementById(id).addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault(); // Mencegah submit form
+                    const nextIndex = index + 1;
+                    if (nextIndex < inputIds.length) {
+                        document.getElementById(inputIds[nextIndex]).focus();
+                    } else {
+                        // Jika input terakhir, fokus ke butang atau panggil kiraPurata
+                        document.querySelector('button').focus();
+                    }
+                }
+            });
+        });
     </script>
 </body>
-
 </html>
-
-
